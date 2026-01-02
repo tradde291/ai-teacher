@@ -1,3 +1,4 @@
+
 // PDF.js types workaround since we are using CDN
 export interface PDFDocumentProxy {
   numPages: number;
@@ -49,7 +50,8 @@ declare global {
 export enum AppState {
   HOME = 'HOME',
   CLASSROOM = 'CLASSROOM',
-  ADMIN = 'ADMIN'
+  ADMIN = 'ADMIN',
+  GAME = 'GAME'
 }
 
 export interface DrawingPoint {
@@ -74,4 +76,33 @@ export interface Textbook {
   subject: string;
   file: File | Blob;
   uploadedAt: number;
+}
+
+// --- GAME TYPES ---
+
+export enum SubjectWeapon {
+  MATH = 'Math (AK-47)',     // High Damage, Recoil
+  SCIENCE = 'Science (MP5)', // Fast Fire, Medium Damage
+  ENGLISH = 'English (Shotgun)', // Close Range, High Damage
+  GK = 'General Knowledge (Shield)' // Defensive
+}
+
+export interface GameQuestion {
+  q: string;
+  o: string[];
+  a: string;
+  subject: SubjectWeapon;
+}
+
+export interface GameStateData {
+  hp: number;
+  kills: number;
+  alive: number;
+  zoneTimer: number;
+  currentWeapon: SubjectWeapon;
+  isQuestionOpen: boolean;
+  currentQuestion: GameQuestion | null;
+  glooWalls: number;
+  gameActive: boolean;
+  gameOver: boolean;
 }
